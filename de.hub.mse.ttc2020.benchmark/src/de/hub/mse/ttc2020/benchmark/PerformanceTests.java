@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.junit.Test;
 
-public class PerformanceTests extends BenchmarkTests {
+public class PerformanceTests extends AbstractBenchmarkTests {
 	/** total number of repetitions */
 	private static final int TOTAL_REPETITIONS = 10000;
 	/** interval at which we measure the passed time since the beginning. */

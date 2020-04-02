@@ -4,9 +4,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.junit.BeforeClass;
 
 import de.hub.mse.ttc2020.benchmark.AllFunctionalTests;
-import de.hub.mse.ttc2020.benchmark.PerformanceTests;
 
-public class AllJavaPerformanceTests extends PerformanceTests {
+public class AllJavaFunctionalTests extends AllFunctionalTests {
 
 	@BeforeClass
 	public static void init() throws CoreException {
