@@ -12,11 +12,11 @@ import org.junit.Test;
 
 public class PerformanceTests extends BenchmarkTests {
 	/** total number of repetitions */
-	private static final int TOTAL_REPETITIONS = 10000;
+	private static final int TOTAL_REPETITIONS = 2000000;
 	/** interval at which we measure the passed time since the beginning. */
-	private static final int MEASURMENT_INTERVAL = 100;
+	private static final int MEASURMENT_INTERVAL = 10000;
 	/** number of non-measured warm-up iterations */
-	private static final int WARM_UP_ITERATIONS = 10;
+	private static final int WARM_UP_ITERATIONS = 100;
 
 	@Test
 	public void testPerformance() throws IOException {
@@ -75,6 +75,7 @@ public class PerformanceTests extends BenchmarkTests {
 			
 			if ((i - WARM_UP_ITERATIONS) % MEASURMENT_INTERVAL == 0 && i > WARM_UP_ITERATIONS) {
 				measurements.put(i - WARM_UP_ITERATIONS, System.nanoTime() - startTime);
+				System.out.println("Iteration " + (i - WARM_UP_ITERATIONS));
 			}
 			
 			// TASK 1
