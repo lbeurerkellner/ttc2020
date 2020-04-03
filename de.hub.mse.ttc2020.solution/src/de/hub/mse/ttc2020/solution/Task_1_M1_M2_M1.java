@@ -1,7 +1,5 @@
 package de.hub.mse.ttc2020.solution;
 
-import java.util.Calendar;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -20,11 +18,8 @@ public class Task_1_M1_M2_M1 extends AbstractTask {
 		EClass class2 = (EClass) getModel2().getEClassifier("Person");
 		EObject instance2 = getModel2().getEFactoryInstance().create(class2);
 		instance2.eSet(class2.getEStructuralFeature("name"), instance.eGet(class1.getEStructuralFeature("name")));
-
-		int age = Integer.parseInt(instance.eGet(class1.getEStructuralFeature("age")).toString());
-		int ybirth = Calendar.getInstance().get(Calendar.YEAR) - age;
-		instance2.eSet(class2.getEStructuralFeature("ybirth"), ybirth);
-
+		instance2.eSet(class2.getEStructuralFeature("age"), -1);
+	
 		return instance2;
 	}
 
@@ -35,10 +30,7 @@ public class Task_1_M1_M2_M1 extends AbstractTask {
 		EObject instance1 = getModel1().getEFactoryInstance().create(class1);
 		instance1.eSet(class1.getEStructuralFeature("name"), instance.eGet(class2.getEStructuralFeature("name")));
 
-		int ybirth = Integer.parseInt(instance.eGet(class2.getEStructuralFeature("ybirth")).toString());
-		int age = Calendar.getInstance().get(Calendar.YEAR) - ybirth;
-		instance1.eSet(class1.getEStructuralFeature("age"), age);
-
 		return instance1;
 	}
+
 }

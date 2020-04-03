@@ -38,7 +38,7 @@ import org.junit.BeforeClass;
  * {@link #pathScenario2}, {@link #pathScenario3}, {@link #pathScenario4}.
  *
  */
-public class BenchmarkTests {
+public abstract class AbstractBenchmarkTests {
 	protected static AbstractTaskFactory taskFactory;
 
 	protected static String pathScenario1 = "data/scenario1/";
@@ -61,8 +61,6 @@ public class BenchmarkTests {
 			}
 		}
 
-		// taskFactory = (AbstractTaskFactory)
-		// Class.forName("de.hub.mse.ttc2020.solution.JavaTaskFactory").newInstance();
 		resSet = new ResourceSetImpl();
 
 		// Initialize EMF resource factories
