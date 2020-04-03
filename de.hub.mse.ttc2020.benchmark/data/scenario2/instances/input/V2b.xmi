@@ -5,4 +5,4 @@
     xmlns="http://ttc2020/model/2.0"
     xsi:schemaLocation="http://ttc2020/model/2.0 ../../models/V2.ecore"
     name="John"
-    age="30"/>
+    ybirth="1990"/>
