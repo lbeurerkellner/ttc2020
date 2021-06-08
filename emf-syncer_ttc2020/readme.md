@@ -5,3 +5,9 @@
 * To run performance tests use [this launch configuration](./AllJavaPerformanceTests.launch)
  
 
+## Running the solution with Docker
+
+* cd to `emf-syncer_ttc2020`
+* Build with: `docker build -f Dockerfile -t emf-syncer_ttc2020 .`
+* Run solution with: `docker run emf-syncer_ttc2020`
+
