@@ -23,6 +23,10 @@ public class Task3TranslationLayer {
 		this.traces.put(o, trace);
 	}
 	
+	public void clearTraces() {
+		this.traces.clear();
+	}
+	
 	// EMF packages for each of the model versions
 	EPackage model1;
 	EPackage model2;

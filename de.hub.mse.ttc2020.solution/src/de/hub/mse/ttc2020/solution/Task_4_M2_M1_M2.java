@@ -18,6 +18,7 @@ public class Task_4_M2_M1_M2 extends AbstractTask {
 
 	@Override
 	public EObject migrate(EObject instance) {
+		translationLayer.clearTraces();
 		return translationLayer.migrateBack(instance);
 	}
 

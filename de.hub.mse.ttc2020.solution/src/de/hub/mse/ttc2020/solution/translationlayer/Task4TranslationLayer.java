@@ -23,6 +23,10 @@ public class Task4TranslationLayer {
 		this.traces.put(o, trace);
 	}
 	
+	public void clearTraces() {
+		this.traces.clear();
+	}
+	
 	// EMF packages for each of the model versions
 	EPackage model1;
 	EPackage model2;
@@ -128,6 +132,8 @@ public class Task4TranslationLayer {
 		return instance1;
 	}
 	
+	
+	// utilities for birth date computations
 	static int ybirthToAge(int ybirth) {
 		return Calendar.getInstance().get(Calendar.YEAR) - ybirth;
 	}
@@ -137,7 +143,7 @@ public class Task4TranslationLayer {
 	}
 	
 	
-	// boilerplate to construct and deconstruct Container instances 
+	// boilerplate to construct and de-construct Container instances 
 	EObject getDogInContainer(EObject container) {
 		EClass containerClass = container.eClass();
 		EObject dog = (EObject) container.eGet(containerClass.getEStructuralFeature("dog"));
@@ -161,7 +167,6 @@ public class Task4TranslationLayer {
 		EObject container2 = model2.getEFactoryInstance().create(containerClass2);
 		container2.eSet(containerClass2.getEStructuralFeature("person"), dog.eGet(dogClass.getEStructuralFeature("owner")));
 		container2.eSet(containerClass2.getEStructuralFeature("dog"), dog);
-		System.out.println(container2);
 		return container2;
 	}
 }
