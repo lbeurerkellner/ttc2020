@@ -62,13 +62,13 @@ public abstract class AbstractBenchmarkTests {
 		System.out.println("Start running tests...");
 
 		// IExtensionRegistry reg = Platform.getExtensionRegistry();
-		if (Platform.getExtensionRegistry() != null) {
-			IConfigurationElement[] elements = Platform.getExtensionRegistry()
-					.getConfigurationElementsFor("de.hub.mse.ttc2020.benchmark.concretetaskfactory");
-			if (elements.length > 0) {
-				taskFactory = (AbstractTaskFactory) elements[0].createExecutableExtension("concrete_task_factory");
-			}
-		}
+//		if (Platform.getExtensionRegistry() != null) {
+//			IConfigurationElement[] elements = Platform.getExtensionRegistry()
+//					.getConfigurationElementsFor("de.hub.mse.ttc2020.benchmark.concretetaskfactory");
+//			if (elements.length > 0) {
+//				taskFactory = (AbstractTaskFactory) elements[0].createExecutableExtension("concrete_task_factory");
+//			}
+//		}
 
 		resSet = new ResourceSetImpl();
 
