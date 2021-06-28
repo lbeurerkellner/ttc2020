@@ -13,5 +13,5 @@
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
     <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="emfsyncer.solution.AllJavaPerformanceTests"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="emf-syncer_ttc2020"/>
-    <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-ea -javaagent:./lib/aspectjweaver-1.9.4.jar"/>
+    <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-ea -javaagent:./lib/aspectjweaver-1.9.6.jar"/>
 </launchConfiguration>
