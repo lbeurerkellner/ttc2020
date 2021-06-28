@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
+Automatic-Module-Name: de.hub.mse.ttc2020.benchmark
 Bundle-Name: Benchmark for the TTC2020 Round-Trip Migration Case
 Bundle-SymbolicName: de.hub.mse.ttc2020.benchmark;singleton:=true
 Bundle-Version: 1.0.0.qualifier
