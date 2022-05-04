@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EPackage
 
 class Task_1_M1_M2_M1 extends AbstractTask {
+	
 	val EMFSyncer syncer
 	
 	new (EPackage model1, EPackage model2) {

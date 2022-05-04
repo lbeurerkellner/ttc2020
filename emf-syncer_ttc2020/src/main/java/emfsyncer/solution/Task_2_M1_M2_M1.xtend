@@ -10,6 +10,7 @@ import emf_syncer.EMFSyncer
 import emf_syncer.EMFSyncerMapping
 
 class Task_2_M1_M2_M1 extends AbstractTask {
+	
 	val EMFSyncer syncer
 	
 	// custom mapping strategy: M1 <--> M2
