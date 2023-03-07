@@ -39,10 +39,10 @@ repositories {
 	maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 
-xtext.version = '2.26.0'
+xtext.version = '2.29.0'
 
 ext {
-	xtendVersion = '2.26.0'
+	xtendVersion = '2.29.0'
 	aspectJVersion = '1.9.9.1'
 }
 
