@@ -1,0 +1,145 @@
+plugins {
+  id "org.xtext.xtend" version "3.0.2"
+}
+
+apply plugin: 'application'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+group = 'yamtl'
+
+eclipse {
+	project {
+	  name = 'emf-syncer_ttc2020'
+	  buildCommand 'org.eclipse.jdt.core.javabuilder'
+	  buildCommand 'org.eclipse.ajdt.core.ajbuilder'
+	  buildCommand 'org.eclipse.buildship.core.gradleprojectbuilder'
+	  buildCommand 'org.eclipse.wst.common.project.facet.core.builder'
+
+	  natures 'org.eclipse.jdt.core.javanature',
+	  	'org.eclipse.ajdt.ui.ajnature',
+		'org.eclipse.buildship.core.gradleprojectnature',
+		'org.eclipse.wst.common.project.facet.core.nature',
+		'org.eclipse.xtext.ui.shared.xtextNature',
+		'org.eclipse.pde.PluginNature'
+	}
+}
+
+
+mainClassName="emfsyncer.solution.AllJavaFunctionalTests"
+
+
+repositories {
+	maven {
+		url "https://github.com/yamtl/yamtl.github.io/raw/mvn-repo/mvn-repo/snapshot-repo"
+	}
+	mavenLocal()
+	mavenCentral()
+	jcenter()
+	maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
+}
+
+xtext.version = '2.29.0'
+
+ext {
+	xtendVersion = '2.29.0'
+	aspectJVersion = '1.9.9.1'
+}
+
+
+// XTEND: configures output directories for generated java
+xtend {
+	sourceSets {
+		main.xtendOutputDir = 'src/main/xtend-gen'
+		test.xtendOutputDir = 'src/test/xtend-gen'
+	}
+}
+
+sourceSets {
+	main {
+		java {
+			srcDirs = [
+				'src/main/java',
+				'src/main/emf-gen',
+				'src/main/xtend-gen'
+			]
+		}
+	}
+}
+
+
+// ASPECTJ
+configurations {
+	ajc
+	aspects
+	aspectCompile
+	ajInpath
+	compile {
+		extendsFrom aspects
+	}
+}
+
+sourceCompatibility = 11
+compileJava {
+  sourceCompatibility = 11 // 1.8
+  doLast{
+	  ant.taskdef( resource:"org/aspectj/tools/ant/taskdefs/aspectjTaskdefs.properties", classpath: configurations.ajc.asPath )
+	  ant.iajc(
+		  source: sourceCompatibility,
+		  destDir: sourceSets.main.output.classesDirs.singleFile.absolutePath,
+		  inpath: configurations.ajInpath.asPath,
+		  maxmem: "512m",
+		  fork: "true",
+		  aspectPath: configurations.aspects.asPath,
+		  sourceRootCopyFilter:"**/.git/*,**/*.java",
+		  classpath:"${configurations.compile.asPath};${configurations.aspectCompile.asPath}"){
+		  sourceroots{
+			  sourceSets.main.java.srcDirs.each{
+				  pathelement(location:it.absolutePath)
+			  }
+		  }
+	  }
+  }
+}
+
+
+dependencies {
+	implementation("yamtl:emf-syncer:0.0.3") 
+	implementation("org.eclipse.xtend:org.eclipse.xtend.core:$xtendVersion") 
+	implementation('org.eclipse.emf:org.eclipse.emf.ecore.xmi:2.15.0')
+	implementation('org.eclipse.emf:org.eclipse.emf.ecore.change:2.11.0')
+	implementation files(
+		"lib/org.eclipse.emf.compare_3.5.3.202102231741.jar"
+	)
+	implementation("log4j:log4j:1.2.17")
+
+	// AspectJ
+	ajc "org.aspectj:aspectjtools:${aspectJVersion}"
+	implementation("org.aspectj:aspectjrt:${aspectJVersion}")
+	implementation("org.aspectj:aspectjweaver:${aspectJVersion}")
+	ajInpath  "org.eclipse.emf:org.eclipse.emf.ecore:2.11+"
+	
+	// TESTING
+	implementation "junit:junit:4.12"
+	testImplementation "org.hamcrest:hamcrest-core:1.3" // only necessary if Hamcrest matchers are used
+	testImplementation "org.hamcrest:hamcrest-library:1.3"
+
+}
+
+
+// create a single Jar with all dependencies
+// source: https://www.mkyong.com/gradle/gradle-create-a-jar-file-with-dependencies/
+task fatJar(type: Jar) {
+	manifest {
+		attributes 'LiveContestDriver': 'YAMTL solution',
+			'Main-Class': 'ttc2021.iworkflows.BenchmarkDriver'
+	}
+	// remove signatures as we are not signing this jar to avoid security warnings
+	exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+	baseName = project.name + '-all'
+	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+	with jar
+}
+
+
+
